@@ -49,5 +49,11 @@ app.delete('/products/:id', async (req, res) => {
     res.json(data);
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Back End rodando na porta ${PORT}`));
+app.listen(process.env.PORT ?? 3000), function (erro) {
+    if (erro) {
+        console.log("Erro ao iniciar.")
+    } else {
+        console.log("Servidor iniciado.")
+    }
+}
+
