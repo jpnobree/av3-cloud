@@ -2,11 +2,13 @@ const express = require('express');
 const cors = require('cors');
 const { createClient } = require('@supabase/supabase-js');
 
+const supabase = 
+    supabaseClient.createClient('https://kdjcmoqqccmrcxmqoipc.supabase.co', 
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtkamNtb3FxY2NtcmN4bXFvaXBjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5OTk1MTgsImV4cCI6MjA3OTU3NTUxOH0.9bshOayJBvrxmpHibi5i_HkNhI_jCFpTvrMHpX0gQLU')
+
 const app = express();
 app.use(cors());
 app.use(express.json());
-
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
 
 // GET: Consultar todos os produtos
 app.get('/products', async (req, res) => {
