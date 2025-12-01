@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 const supabase = createClient('https://kdjcmoqqccmrcxmqoipc.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtkamNtb3FxY2NtcmN4bXFvaXBjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5OTk1MTgsImV4cCI6MjA3OTU3NTUxOH0.9bshOayJBvrxmpHibi5i_HkNhI_jCFpTvrMHpX0gQLU')
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtkamNtb3FxY2NtcmN4bXFvaXBjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5OTk1MTgsImV4cCI6MjA3OTU3NTUxOH0.9bshOayJBvrxmpHibi5i_HkNhI_jCFpTvrMHpX0gQLU');
 
 // GET all
 app.get('/products', async (req, res) => {
