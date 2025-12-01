@@ -1,15 +1,21 @@
 const express = require('express');
 const cors = require('cors');
+const { createClient } = require('@supabase/supabase-js');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-const supabase =
-  supabaseClient.createClient('https://kdjcmoqqccmrcxmqoipc.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtkamNtb3FxY2NtcmN4bXFvaXBjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5OTk1MTgsImV4cCI6MjA3OTU3NTUxOH0.9bshOayJBvrxmpHibi5i_HkNhI_jCFpTvrMHpX0gQLU')
-
-
+const supabase = createClient('https://kdjcmoqqccmrcxmqoipc.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtkamNtb3FxY2NtcmN4bXFvaXBjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5OTk1MTgsImV4cCI6MjA3OTU3NTUxOH0.9bshOayJBvrxmpHibi5i_HkNhI_jCFpTvrMHpX0gQLU')
+// ...existing code...
+app.listen(process.env.PORT ?? 3000, function (erro) {
+  if (erro) {
+    console.log("Erro ao iniciar.")
+  } else {
+    console.log("Servidor iniciado.")
+  }
+});
 // GET all
 app.get('/products', async (req, res) => {
   try {
@@ -66,10 +72,10 @@ app.delete('/products/:id', async (req, res) => {
   } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
-app.listen(process.env.PORT ?? 3000), function (erro) {
+app.listen(process.env.PORT ?? 3000, function (erro) {
   if (erro) {
     console.log("Erro ao iniciar.")
   } else {
     console.log("Servidor iniciado.")
   }
-}
+})
