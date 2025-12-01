@@ -19,7 +19,7 @@ app.listen(process.env.PORT ?? 3000, function (erro) {
 // GET all
 app.get('/products', async (req, res) => {
   try {
-    const { data, error } = await supabase.from('produtos').select('*').order('id', { ascending: true });
+    const { data, error } = await supabase.from('products').select('*').order('id', { ascending: true });
     if (error) return res.status(400).json({ error: error.message || error });
     res.json(data);
   } catch (err) { res.status(500).json({ error: err.message }); }
@@ -29,7 +29,7 @@ app.get('/products', async (req, res) => {
 app.get('/products/:id', async (req, res) => {
   try {
     const id = req.params.id;
-    const { data, error } = await supabase.from('produtos').select('*').eq('id', id).single();
+    const { data, error } = await supabase.from('products').select('*').eq('id', id).single();
     if (error) return res.status(404).json({ error: error.message || 'Not found' });
     res.json(data);
   } catch (err) { res.status(500).json({ error: err.message }); }
@@ -41,7 +41,7 @@ app.post('/products', async (req, res) => {
     const { nome, descricao, preco } = req.body;
     if (!nome) return res.status(400).json({ error: 'nome é obrigatório' });
     const payload = { nome, descricao: descricao || null, preco: preco === '' || preco === undefined ? null : preco };
-    const { data, error } = await supabase.from('produtos').insert([payload]).select().single();
+    const { data, error } = await supabase.from('products').insert([payload]).select().single();
     if (error) return res.status(400).json({ error: error.message || error });
     res.status(201).json(data);
   } catch (err) { res.status(500).json({ error: err.message }); }
@@ -56,7 +56,7 @@ app.put('/products/:id', async (req, res) => {
     if (nome !== undefined) updates.nome = nome;
     if (descricao !== undefined) updates.descricao = descricao;
     if (preco !== undefined) updates.preco = preco;
-    const { data, error } = await supabase.from('produtos').update(updates).eq('id', id).select().single();
+    const { data, error } = await supabase.from('products').update(updates).eq('id', id).select().single();
     if (error) return res.status(400).json({ error: error.message || error });
     res.json(data);
   } catch (err) { res.status(500).json({ error: err.message }); }
@@ -66,7 +66,7 @@ app.put('/products/:id', async (req, res) => {
 app.delete('/products/:id', async (req, res) => {
   try {
     const id = req.params.id;
-    const { data, error } = await supabase.from('produtos').delete().eq('id', id).select().single();
+    const { data, error } = await supabase.from('products').delete().eq('id', id).select().single();
     if (error) return res.status(400).json({ error: error.message || error });
     res.json({ deleted: data });
   } catch (err) { res.status(500).json({ error: err.message }); }
